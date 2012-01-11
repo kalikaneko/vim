@@ -15,6 +15,10 @@
 " Only basic settings needed to enforce the style guidelines are set.
 " Some suggested options are listed but commented out at the end of this file.
 
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
+
 " Number of spaces that a pre-existing tab is equal to.
 " For the amount of space used for a new tab use shiftwidth.
 au BufRead,BufNewFile *py,*pyw,*.c,*.h set tabstop=4
@@ -98,11 +102,10 @@ iab lenght length
 iab max_lenght max_length
 
 set mouse=a
-nnoremap <F2> :set invpaste paste?<CR>
-imap <F2> <C-O><F2>
-set pastetoggle=<F2>
 
 set incsearch
 set hls
+
+
 
 colo zellner
