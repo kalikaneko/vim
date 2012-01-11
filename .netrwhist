@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/home/cal/working/django-webid-provider/examples/example_webid_provider/requirements'
+let g:netrw_dirhist_2='/home/cal/working/django-webid-provider/src/django_webid/provider/templates/django_webid'
+let g:netrw_dirhist_3='/home/cal/working/django-webid-provider/src/django_webid/provider/templates/django_webid/provider'
