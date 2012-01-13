@@ -1,3 +1,4 @@
+http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/
 Installation:
 
     git clone git://github.com/nelstrom/dotvim.git ~/.vim
@@ -12,3 +13,8 @@ Switch to the `~/.vim` directory, and fetch submodules:
     cd ~/.vim
     git submodule init
     git submodule update
+
+For instance:
+    git submodule add git://github.com/Lokaltog/vim-powerline.git bundle/vim-powerline
+    Cloning into 'bundle/vim-powerline'...
+
