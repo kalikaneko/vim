@@ -106,8 +106,11 @@ set mouse=a
 set incsearch
 set hls
 
-
-
+autocmd FileType python compiler pylint
+let g:pylint_onwrite = 0
+let g:pylint_show_rate = 0
+let g:pylint_cwindow = 0
+let g:pylint_signs = 0
 
 
 set nocompatible " Disable vi-compatibility
@@ -118,3 +121,4 @@ set t_Co=256 " Explicitly tell vim that the terminal has 256 colors
 "colorscheme transparent
 "colorscheme slate
 colorscheme delek
+" custom schemes creator: http://www.bilalquadri.com/villustrator/
