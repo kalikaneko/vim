@@ -7,3 +7,9 @@
 [submodule "bundle/vim-powerline"]
 	path = bundle/vim-powerline
 	url = git://github.com/Lokaltog/vim-powerline.git
+[submodule "bundle/vim-pyflakes"]
+	path = bundle/vim-pyflakes
+	url = git://github.com/kevinw/pyflakes-vim.git
+[submodule "bundle/vim-pep8"]
+	path = bundle/vim-pep8
+	url = git://github.com/jbking/vim-pep8.git
