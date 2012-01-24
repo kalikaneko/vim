@@ -18,6 +18,7 @@
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
+set background=dark
 
 " Number of spaces that a pre-existing tab is equal to.
 " For the amount of space used for a new tab use shiftwidth.
@@ -121,7 +122,13 @@ set t_Co=256 " Explicitly tell vim that the terminal has 256 colors
 "colorscheme transparent
 "colorscheme slate
 "colorscheme delek
-colorscheme paintbox
+"colorscheme paintbox
+"set background=dark
+let g:solarized_termtrans=1
+"let g:solarized_termcolors=256 "w/o this, it appears a green color... 
+"but ... it's not so bad
+colorscheme solarized
+set background=dark
 
 " !!!!
 " custom schemes creator: http://www.bilalquadri.com/villustrator/
@@ -130,3 +137,10 @@ filetype on            " enables filetype detection
 filetype plugin on     " enables filetype specific plugins
 
 " let g:pyflakes_use_quickfix = 0
+
+set background=dark
+call togglebg#map("<F5>")
+
+ugroup filetypedetect 
+au BufNewFile,BufRead access.log*   setf httpclog 
+augroup END
