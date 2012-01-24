@@ -141,6 +141,6 @@ filetype plugin on     " enables filetype specific plugins
 set background=dark
 call togglebg#map("<F5>")
 
-ugroup filetypedetect 
+augroup filetypedetect 
 au BufNewFile,BufRead access.log*   setf httpclog 
 augroup END
