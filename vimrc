@@ -87,6 +87,9 @@ au BufNewFile *.py,*.pyw,*.c,*.h set fileformat=unix
 let python_highlight_all=1
 syntax on
 
+" I like to see numlines from the beginning
+set nu
+
 " Automatically indent based on file type: 
 filetype indent on
 " Keep indentation level from previous line:
@@ -94,7 +97,10 @@ set autoindent
 
 " Folding based on indentation: ``set foldmethod=indent``
 
-abbr setBP import ipdb;ipdb.set_trace()
+" handle this in snippets
+"abbr setBP import ipdb;ipdb.set_trace()
+"abbr setBPQ import pdb4qt; pdb4qt.set_trace()
+"abbr NI** raise NotImplementedError
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 
@@ -104,8 +110,21 @@ iab max_lenght max_length
 
 set mouse=a
 
+" fuck arrow keys...
+noremap  <Up> ""
+noremap! <Up> <Esc>
+noremap  <Down> ""
+noremap! <Down> <Esc>
+noremap  <Left> ""
+noremap! <Left> <Esc>
+noremap  <Right> ""
+noremap! <Right> <Esc>
+
+" Searching
 set incsearch
 set hls
+set ignorecase                  " searches are case insensitive...
+set smartcase                   " ... unless they contain at least one capital letter
 
 "autocmd FileType python compiler pylint
 "let g:pylint_onwrite = 0
@@ -116,6 +135,7 @@ set hls
 
 set nocompatible " Disable vi-compatibility
 set laststatus=2 " Always show the statusline
+
 set t_Co=256 " Explicitly tell vim that the terminal has 256 colors
 
 "colorscheme simple256
@@ -123,12 +143,13 @@ set t_Co=256 " Explicitly tell vim that the terminal has 256 colors
 "colorscheme slate
 "colorscheme delek
 "colorscheme paintbox
-"set background=dark
+
+set background=dark
 let g:solarized_termtrans=1
-"let g:solarized_termcolors=256 "w/o this, it appears a green color... 
+let g:solarized_termcolors=256 "w/o this, it appears a green color... 
 "but ... it's not so bad
 colorscheme solarized
-set background=dark
+let g:Powerline_symbols = 'unicode'
 
 " !!!!
 " custom schemes creator: http://www.bilalquadri.com/villustrator/
@@ -138,9 +159,50 @@ filetype plugin on     " enables filetype specific plugins
 
 " let g:pyflakes_use_quickfix = 0
 
-set background=dark
 call togglebg#map("<F5>")
 
 augroup filetypedetect 
 au BufNewFile,BufRead access.log*   setf httpclog 
+au BufNewFile,BufRead error.log*   setf httpclog 
 augroup END
+
+
+" comment line, selection with Ctrl-N,Ctrl-N
+au BufEnter *.py nnoremap  <C-N><C-N>    mn:s/^\(\s*\)#*\(.*\)/\1#\2/ge<CR>:noh<CR>`n
+au BufEnter *.py inoremap  <C-N><C-N>    <C-O>mn<C-O>:s/^\(\s*\)#*\(.*\)/\1#\2/ge<CR><C-O>:noh<CR><C-O>`n
+au BufEnter *.py vnoremap  <C-N><C-N>    mn:s/^\(\s*\)#*\(.*\)/\1#\2/ge<CR>:noh<CR>gv`n
+
+" uncomment line, selection with Ctrl-N,N
+au BufEnter *.py nnoremap  <C-N>n     mn:s/^\(\s*\)#\([^ ]\)/\1\2/ge<CR>:s/^#$//ge<CR>:noh<CR>`n
+au BufEnter *.py inoremap  <C-N>n     <C-O>mn<C-O>:s/^\(\s*\)#\([^ ]\)/\1\2/ge<CR><C-O>:s/^#$//ge<CR><C-O>:noh<CR><C-O>`n
+au BufEnter *.py vnoremap  <C-N>n     mn:s/^\(\s*\)#\([^ ]\)/\1\2/ge<CR>gv:s/#\n/\r/ge<CR>:noh<CR>gv`n" 
+
+" abbr to insert ts
+:iab <expr> dts strftime("%Y-%m-%d %H:%M")
+:iab itemdo * [ ]
+
+" tagbar toggle
+nmap <F9> :TagbarToggle<CR>
+
+" let g:Powerline_symbols = 'fancy'
+
+" Pymode
+" I think this is making vim a little slow lately...
+let g:pymode_folding = 0
+let g:pymode_rope = 0
+let g:pymode_lint_write = 0
+let g:pymode_motion = 0
+
+" Vimwiki remap (cause C-Space is taken on my awesome rc)
+" marks todo items
+nmap <silent><buffer> <C-b> <Plug>VimwikiToggleListItem
+vmap <silent><buffer> <C-b> <Plug>VimwikiToggleListItem
+
+" rst binding for rebuilding docs
+" (useful for sphinx)
+au BufEnter *.rst nnoremap <F2>   :w<CR>:!make html<CR>
+au BufEnter *.rst inoremap <F2>   :w<CR>:!make html<CR>
+au BufEnter *.rst vnoremap <F2>   :w<CR>:!make html<CR>
+
+" set foldmethod=indent
+" set foldlevel=99
