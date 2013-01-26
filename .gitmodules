@@ -13,3 +13,27 @@
 [submodule "bundle/vim-pep8"]
 	path = bundle/vim-pep8
 	url = git://github.com/jbking/vim-pep8.git
+[submodule "bundle/mustache-vim"]
+	path = bundle/mustache-vim
+	url = git://github.com/lukerandall/mustache-vim.git
+[submodule "vim-javascript-syntax"]
+	path = vim-javascript-syntax
+	url = https://github.com/jelera/vim-javascript-syntax
+[submodule "bundle/vim-javascript-syntax"]
+	path = bundle/vim-javascript-syntax
+	url = https://github.com/jelera/vim-javascript-syntax
+[submodule "bundle/tagbar"]
+	path = bundle/tagbar
+	url = https://github.com/majutsushi/tagbar.git
+[submodule "bundle/git-vim"]
+	path = bundle/git-vim
+	url = https://github.com/motemen/git-vim.git
+[submodule "bundle/vim-wiki"]
+	path = bundle/vim-wiki
+	url = git://github.com/vim-scripts/vimwiki.git
+[submodule "bundle/vim-pydoc"]
+	path = bundle/vim-pydoc
+	url = git://github.com/fs111/pydoc.vim.git
+[submodule "bundle/vim-snipmate"]
+	path = bundle/vim-snipmate
+	url = git://github.com/msanders/snipmate.vim.git
