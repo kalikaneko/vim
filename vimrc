@@ -51,10 +51,10 @@ au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
 " Make trailing whitespace be flagged as bad.
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
-" Wrap text after a certain number of characters
-" Python: 79 
-" C: 79
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h set textwidth=79
+" wrapping
+set wrap
+set linebreak
+set nolist  " list disables linebreak
 
 " Turn off settings in 'formatoptions' relating to comment formatting.
 " - c : do not automatically insert the comment leader when wrapping based on
@@ -179,8 +179,8 @@ au BufEnter *.py inoremap  <C-N>n     <C-O>mn<C-O>:s/^\(\s*\)#\([^ ]\)/\1\2/ge<C
 au BufEnter *.py vnoremap  <C-N>n     mn:s/^\(\s*\)#\([^ ]\)/\1\2/ge<CR>gv:s/#\n/\r/ge<CR>:noh<CR>gv`n" 
 
 " abbr to insert ts
-:iab <expr> dts strftime("%Y-%m-%d %H:%M")
-:iab itemdo * [ ]
+iab <expr> dts strftime("%Y-%m-%d %H:%M")
+iab itemdo * [ ]
 
 " tagbar toggle
 nmap <F9> :TagbarToggle<CR>
@@ -207,3 +207,18 @@ au BufEnter *.rst vnoremap <F2>   :w<CR>:!make html<CR>
 
 " set foldmethod=indent
 " set foldlevel=99
+
+if has('autocmd')
+  au BufRead,BufNewFile *.txt set wm=2 tw=80
+endif
+
+if has('autocmd')
+  au BufRead,BufNewFile *.rst set wm=2 tw=80
+endif
+
+" Wrap text after a certain number of characters
+" Python: 79 
+" C: 79
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h set textwidth=79
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h set wrap linebreak
+
