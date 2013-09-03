@@ -29,20 +29,9 @@ snippet init
 snippet logger
 	logger = logging.getLogger(__name__)
 
-snippet head
-	#-*- encoding: utf-8 -*-
-	"""
-	leap/foo/bar/baaz/__init__.py
-	----------------------------------
-
-	@authors: Kali Kaneko, <kali@leap.se>
-	@license: GPLv3, see included LICENSE file
-	@copyright: © 2013 Kali Kaneko, see COPYLEFT file
-	"""
-
 snippet header
 	# -*- coding: utf-8 -*-
-	# ${1:Foo.py}
+	# ${1: FOO_FILE}.py
 	# Copyright (C) 2013 LEAP
 	#
 	# This program is free software: you can redistribute it and/or modify
@@ -58,5 +47,5 @@ snippet header
 	# You should have received a copy of the GNU General Public License
 	# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	"""
-	${2:Does foo and bar}
+	${2:module docs}
 	"""

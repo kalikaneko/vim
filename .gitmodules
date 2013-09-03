@@ -3,10 +3,10 @@
 	url = http://github.com/tpope/vim-fugitive.git
 [submodule "bundle/colorschemes"]
 	path = bundle/colorschemes
-	url = git@github.com:flazz/vim-colorschemes.git
+	url = git://github.com/flazz/vim-colorschemes.git
 [submodule "bundle/vim-powerline"]
 	path = bundle/vim-powerline
-	url = git://github.com/Lokaltog/vim-powerline.git
+	url = git://github.com/vimez/vim-powerline.git
 [submodule "bundle/vim-pyflakes"]
 	path = bundle/vim-pyflakes
 	url = git://github.com/kevinw/pyflakes-vim.git
@@ -40,3 +40,27 @@
 [submodule "vim-colors-solarized"]
 	path = bundle/vim-colors-solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule "bundle/vim-gitgutter"]
+	path = bundle/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
+[submodule "bundle/CoVim"]
+	path = bundle/CoVim
+	url = git://github.com/FredKSchott/CoVim.git
+[submodule "bundle/supertab"]
+	path = bundle/supertab
+	url = git://github.com/ervandew/supertab.git
+[submodule "bundle/vim-snipmate-fork"]
+	path = bundle/vim-snipmate-fork
+	url = https://github.com/garbas/vim-snipmate
+[submodule "bundle/tlib_vim"]
+	path = bundle/tlib_vim
+	url = https://github.com/tomtom/tlib_vim.git
+[submodule "bundle/vim-addon-mw-utils"]
+	path = bundle/vim-addon-mw-utils
+	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
+[submodule "bundle/vim-surround"]
+	path = bundle/vim-surround
+	url = git://github.com/tpope/vim-surround.git
+[submodule "bundle/jedi-vim"]
+	path = bundle/jedi-vim
+	url = https://github.com/davidhalter/jedi-vim.git

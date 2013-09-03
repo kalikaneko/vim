@@ -51,10 +51,10 @@ au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
 " Make trailing whitespace be flagged as bad.
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
-" Wrap text after a certain number of characters
-" Python: 79 
-" C: 79
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h set textwidth=79
+" wrapping
+set wrap
+set linebreak
+set nolist  " list disables linebreak
 
 " Turn off settings in 'formatoptions' relating to comment formatting.
 " - c : do not automatically insert the comment leader when wrapping based on
@@ -158,6 +158,7 @@ filetype on            " enables filetype detection
 filetype plugin on     " enables filetype specific plugins
 
 " let g:pyflakes_use_quickfix = 0
+let g:pyflakes_use_quickfix = 0
 
 call togglebg#map("<F5>")
 
@@ -178,8 +179,8 @@ au BufEnter *.py inoremap  <C-N>n     <C-O>mn<C-O>:s/^\(\s*\)#\([^ ]\)/\1\2/ge<C
 au BufEnter *.py vnoremap  <C-N>n     mn:s/^\(\s*\)#\([^ ]\)/\1\2/ge<CR>gv:s/#\n/\r/ge<CR>:noh<CR>gv`n" 
 
 " abbr to insert ts
-:iab <expr> dts strftime("%Y-%m-%d %H:%M")
-:iab itemdo * [ ]
+iab <expr> dts strftime("%Y-%m-%d %H:%M")
+iab itemdo * [ ]
 
 " tagbar toggle
 nmap <F9> :TagbarToggle<CR>
@@ -192,6 +193,9 @@ let g:pymode_folding = 0
 let g:pymode_rope = 0
 let g:pymode_lint_write = 0
 let g:pymode_motion = 0
+
+" Display tabs at the beginning of a line in Python mode as bad.
+au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
 
 " Vimwiki remap (cause C-Space is taken on my awesome rc)
 " marks todo items
@@ -206,3 +210,40 @@ au BufEnter *.rst vnoremap <F2>   :w<CR>:!make html<CR>
 
 " set foldmethod=indent
 " set foldlevel=99
+
+if has('autocmd')
+  au BufRead,BufNewFile *.txt set wm=2 tw=80
+endif
+
+if has('autocmd')
+  au BufRead,BufNewFile *.rst set wm=2 tw=80
+endif
+
+" Wrap text after a certain number of characters
+" Python: 79 
+" C: 79
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h set textwidth=79
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h set wrap linebreak
+
+""" python/supertab
+au FileType python set omnifunc=pythoncomplete#Complete
+let g:SuperTabDefaultCompletionType = "context"
+set completeopt=menuone,longest,preview
+
+""" tags
+""" see http://www.held.org.il/blog/2011/02/configuring-ctags-for-python-and-vim/
+set tags=~/mytags
+
+""" jedi bindings
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = "<leader>d"
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-p>"
+
+""" leader-r is colliding wth something else
+let g:jedi#rename_command = "<leader>t"
+let g:jedi#show_call_signatures = "1"
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#popup_on_dot = 0
+autocmd FileType python setlocal completeopt-=preview
