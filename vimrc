@@ -194,6 +194,9 @@ let g:pymode_rope = 0
 let g:pymode_lint_write = 0
 let g:pymode_motion = 0
 
+" Display tabs at the beginning of a line in Python mode as bad.
+au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
+
 " Vimwiki remap (cause C-Space is taken on my awesome rc)
 " marks todo items
 nmap <silent><buffer> <C-b> <Plug>VimwikiToggleListItem
@@ -222,3 +225,25 @@ endif
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h set textwidth=79
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h set wrap linebreak
 
+""" python/supertab
+au FileType python set omnifunc=pythoncomplete#Complete
+let g:SuperTabDefaultCompletionType = "context"
+set completeopt=menuone,longest,preview
+
+""" tags
+""" see http://www.held.org.il/blog/2011/02/configuring-ctags-for-python-and-vim/
+set tags=~/mytags
+
+""" jedi bindings
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = "<leader>d"
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-p>"
+
+""" leader-r is colliding wth something else
+let g:jedi#rename_command = "<leader>t"
+let g:jedi#show_call_signatures = "1"
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#popup_on_dot = 0
+autocmd FileType python setlocal completeopt-=preview
