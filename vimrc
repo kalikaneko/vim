@@ -199,8 +199,8 @@ au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
 
 " Vimwiki remap (cause C-Space is taken on my awesome rc)
 " marks todo items
-nmap <silent><buffer> <C-b> <Plug>VimwikiToggleListItem
-vmap <silent><buffer> <C-b> <Plug>VimwikiToggleListItem
+nmap <leader>tt <Plug>VimwikiToggleListItem
+vmap <leader>tt <Plug>VimwikiToggleListItem
 
 " rst binding for rebuilding docs
 " (useful for sphinx)
@@ -247,3 +247,16 @@ let g:jedi#show_call_signatures = "1"
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#popup_on_dot = 0
 autocmd FileType python setlocal completeopt-=preview
+
+
+
+""" notmuch-vim
+let g:notmuch_folders = [
+	\ [ 'pers', 'tag:pers' ],
+	\ [ 'new', 'tag:inbox and tag:unread' ],
+	\ [ 'inbox', 'tag:inbox' ],
+	\ [ 'leap-chili', 'from:chili' ],
+	\ [ 'leap-code-o-matic', 'from:leap-code-o-matic' ],
+	\ ]
+
+""" Syntax log
