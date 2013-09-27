@@ -67,3 +67,9 @@
 [submodule "bundle/vim-markdown"]
 	path = bundle/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
+[submodule "bundle/notmuch-abook"]
+	path = bundle/notmuch-abook
+	url = https://github.com/guyzmo/notmuch-abook.git
+[submodule "bundle/syntax-range"]
+	path = bundle/syntax-range
+	url = https://github.com/vim-scripts/SyntaxRange.git
