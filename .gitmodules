@@ -73,3 +73,6 @@
 [submodule "bundle/syntax-range"]
 	path = bundle/syntax-range
 	url = https://github.com/vim-scripts/SyntaxRange.git
+[submodule "bundle/vundle"]
+	path = bundle/vundle
+	url = https://github.com/gmarik/vundle.git

@@ -154,7 +154,9 @@ let g:Powerline_symbols = 'unicode'
 " !!!!
 " custom schemes creator: http://www.bilalquadri.com/villustrator/
 
-filetype on            " enables filetype detection
+" filetype on            " enables filetype detection
+filetype off            " disables filetype detection
+                        " required by vundle ^^^
 filetype plugin on     " enables filetype specific plugins
 
 " let g:pyflakes_use_quickfix = 0
@@ -280,3 +282,41 @@ let g:notmuch_folders = [
 	\ [ 'leap-git', 'from:leap-code-o-matic or from:gitolite@hare' ],
 	\ ]
 
+
+" vundles!
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+ " let Vundle manage Vundle
+ " required! 
+Bundle 'gmarik/vundle'
+
+ " My Bundles here: 
+
+" git repos
+
+Bundle 'flazz/vim-colorschemes'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-surround'
+Bundle 'motemen/git-vim'
+Bundle 'likerandall/mustache-vim'
+Bundle 'majutsushi/tagbar'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'jbking/vim-pep8'
+Bundle 'vimez/vim-powerline'
+Bundle 'fs111/pydoc.vim'
+Bundle 'kevinw/pyflakes-vim'
+Bundle 'vim-scripts/vimwiki'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'FredKSchott/CoVim'
+Bundle 'ervandew/supertab'
+Bundle 'garbas/vim-snipmate'
+Bundle 'tomtom/tlib_vim'
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'davidhalter/jedi-vim'
+Bundle 'plasticboy/vim-markdown'
+Bundle 'vim-scripts/SyntaxRange'
+
+
+filetype plugin indent on     " required!
