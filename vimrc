@@ -135,6 +135,7 @@ set smartcase                   " ... unless they contain at least one capital l
 
 set nocompatible " Disable vi-compatibility
 set laststatus=2 " Always show the statusline
+" set statusline = "%{fugitive#statusline()}"  " add branch to statusline
 
 set t_Co=256 " Explicitly tell vim that the terminal has 256 colors
 
@@ -308,6 +309,7 @@ Bundle 'vimez/vim-powerline'
 Bundle 'fs111/pydoc.vim'
 Bundle 'kevinw/pyflakes-vim'
 Bundle 'vim-scripts/vimwiki'
+Bundle 'vim-scripts/grep.vim'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'FredKSchott/CoVim'
 Bundle 'ervandew/supertab'
@@ -317,6 +319,21 @@ Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'vim-scripts/SyntaxRange'
+Bundle 'sjl/gundo.vim'
+Bundle 'bridgeutopia/vim-showmarks'
+Bundle 'rosenfeld/conque-term'
+Bundle 'szw/vim-dict'
 
 
 filetype plugin indent on     " required!
+
+
+" Map F3 to Grep
+nnoremap <silent> <F3> :Grep<CR>
+" Map Leader-T to ConqueTerm
+nnoremap <silent> <leader>TT :ConqueTermVSplit zsh<CR>
+
+" Vim-Dict configuration
+let g:dict_hosts = [
+    \["dict.org", ["gcide", "wn", "moby-thes", "vera", "jargon", "foldoc", "bouvier", "devil"]]
+    \]
