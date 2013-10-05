@@ -162,6 +162,18 @@ let g:pyflakes_use_quickfix = 0
 
 call togglebg#map("<F5>")
 
+" move between tabs
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
+nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
+
+" With the following, you can press F7 to show all buffers in tabs, or to close
+" all tabs (toggle: it alternately executes :tab ball and :tabo).
+let notabs = 1
+nnoremap <silent> <F7> :let notabs=!notabs<Bar>:if notabs<Bar>:tabo<Bar>:else<Bar>:tab ball<Bar>:tabn<Bar>:endif<CR>
+
+
 augroup filetypedetect 
 au BufNewFile,BufRead access.log*   setf httpclog 
 au BufNewFile,BufRead error.log*   setf httpclog 
@@ -251,12 +263,20 @@ autocmd FileType python setlocal completeopt-=preview
 
 
 """ notmuch-vim
+"""should filter by leap-list tag instead
 let g:notmuch_folders = [
 	\ [ 'pers', 'tag:pers' ],
+	\ [ 'friends', 'tag:friends' ],
 	\ [ 'new', 'tag:inbox and tag:unread' ],
+	\ [ 'bare-inbox', 'tag:inbox and not tag:lists' ],
 	\ [ 'inbox', 'tag:inbox' ],
+	\ [ 'leap', 'subject:"leap"' ], 
 	\ [ 'leap-chili', 'from:chili' ],
-	\ [ 'leap-code-o-matic', 'from:leap-code-o-matic' ],
+	\ [ 'cryptography', 'tag:lists and tag:cryptography' ],
+	\ [ 'nettime', 'tag:lists and tag:nettime-l' ],
+	\ [ 'tor-dev', 'tag:lists and tag:tor-dev' ],
+	\ [ 'python-dev', 'tag:lists and tag:python-dev' ],
+	\ [ 'debian-devel', 'tag:lists and tag:debian-devel' ],
+	\ [ 'leap-git', 'from:leap-code-o-matic or from:gitolite@hare' ],
 	\ ]
 
-""" Syntax log
