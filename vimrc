@@ -337,3 +337,10 @@ nnoremap <silent> <leader>TT :ConqueTermVSplit zsh<CR>
 let g:dict_hosts = [
     \["dict.org", ["gcide", "wn", "moby-thes", "vera", "jargon", "foldoc", "bouvier", "devil"]]
     \]
+
+" do not start showmarks (use \mt to toggle)
+let g:showmarks_enable = 0
+
+" edit vimrc!
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+
