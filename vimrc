@@ -166,10 +166,12 @@ let g:pyflakes_use_quickfix = 0
 call togglebg#map("<F5>")
 
 " move between tabs
-nnoremap <C-Left> :tabprevious<CR>
-nnoremap <C-Right> :tabnext<CR>
-nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
-nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
+nnoremap <C-H> :tabprevious<CR>
+inoremap <C-H> :tabprevious<CR>
+nnoremap <C-L> :tabnext<CR>
+inoremap <C-L> :tabnext<CR>
+"nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
+"nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
 
 " With the following, you can press F7 to show all buffers in tabs, or to close
 " all tabs (toggle: it alternately executes :tab ball and :tabo).
@@ -296,8 +298,11 @@ Bundle 'gmarik/vundle'
 
 " git repos
 
-Bundle 'flazz/vim-colorschemes'
+" XXX uh --- I had a vbroken/old vim-powerline,
+" but it *was* working it it.
 Bundle 'Lokaltog/powerline'
+
+Bundle 'flazz/vim-colorschemes'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'motemen/git-vim'
