@@ -170,6 +170,8 @@ nnoremap <C-H> :tabprevious<CR>
 inoremap <C-H> :tabprevious<CR>
 nnoremap <C-L> :tabnext<CR>
 inoremap <C-L> :tabnext<CR>
+nnoremap <C-W>t :tabnew 
+inoremap <C-W>t :tabnew 
 "nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 "nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
 
