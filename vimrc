@@ -132,8 +132,13 @@ set smartcase                   " ... unless they contain at least one capital l
 "let g:pylint_cwindow = 0
 "let g:pylint_signs = 0
 
+let g:pylint_onwrite = 0
+"let mapleader = ","
+nnoremap <leader>p :PyLint<cr>    " pressing ,p will run plyint on current buffer
 
 set nocompatible " Disable vi-compatibility
+
+
 set laststatus=2 " Always show the statusline
 " set statusline = "%{fugitive#statusline()}"  " add branch to statusline
 
@@ -172,6 +177,15 @@ nnoremap <C-L> :tabnext<CR>
 inoremap <C-L> :tabnext<CR>
 nnoremap <C-W>t :tabnew 
 inoremap <C-W>t :tabnew 
+
+" paste mode
+nnoremap <C-W>p :set paste!<CR>
+inoremap <C-W>p :set paste!<CR>
+
+" mail filetype
+nnoremap <C-W>m :set filetype=mail<CR>
+inoremap <C-W>m :set filetype=mail<CR>
+
 "nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 "nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
 
