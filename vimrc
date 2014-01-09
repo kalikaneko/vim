@@ -186,6 +186,10 @@ inoremap <C-W>p :set paste!<CR>
 nnoremap <C-W>m :set filetype=mail<CR>
 inoremap <C-W>m :set filetype=mail<CR>
 
+" SQUASH -- for rebase !
+map ,s dwis <ESC>
+
+
 "nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 "nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
 
