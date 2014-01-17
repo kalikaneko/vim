@@ -188,6 +188,7 @@ inoremap <C-W>m :set filetype=mail<CR>
 
 " SQUASH -- for rebase !
 map ,s dwis <ESC>
+map ,c :VimuxPromptCommand<CR>
 
 
 "nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
@@ -318,36 +319,62 @@ Bundle 'gmarik/vundle'
 
 " git repos
 
+" looking good
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'flazz/vim-colorschemes'
+
+" essentials
+
 " XXX uh --- I had a vbroken/old vim-powerline,
 " but it *was* working it it.
 Bundle 'Lokaltog/powerline'
-
-Bundle 'flazz/vim-colorschemes'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'motemen/git-vim'
-Bundle 'mustache/vim-mode'
+Bundle 'vim-scripts/vimwiki'
+" I got a fork of snipmate because some problem with...
+" supertab?
+Bundle 'garbas/vim-snipmate'
+Bundle 'ervandew/supertab'
 Bundle 'majutsushi/tagbar'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'jelera/vim-javascript-syntax'
+Bundle 'sjl/gundo.vim'
+
+" random stuff
+Bundle 'bridgeutopia/vim-showmarks'
+Bundle 'vim-scripts/grep.vim'
+Bundle 'tpope/vim-surround'
+
+" Git
+Bundle 'airblade/vim-gitgutter'
+Bundle 'tpope/vim-fugitive'
+Bundle 'motemen/git-vim'
+
+" python
+Bundle 'klen/python-mode'
+Bundle 'davidhalter/jedi-vim'
+Bundle 'kevinw/pyflakes-vim'
 Bundle 'jbking/vim-pep8'
 Bundle 'fs111/pydoc.vim'
-Bundle 'kevinw/pyflakes-vim'
-Bundle 'vim-scripts/vimwiki'
-Bundle 'vim-scripts/grep.vim'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'FredKSchott/CoVim'
-Bundle 'ervandew/supertab'
-Bundle 'garbas/vim-snipmate'
-Bundle 'tomtom/tlib_vim'
+
+" syntax
+Bundle 'jelera/vim-javascript-syntax'
 Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'davidhalter/jedi-vim'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'vim-scripts/SyntaxRange'
-Bundle 'sjl/gundo.vim'
-Bundle 'bridgeutopia/vim-showmarks'
+Bundle 'mustache/vim-mode'
+
+" Shells and stuff
+Bundle 'tomtom/tlib_vim'
 Bundle 'rosenfeld/conque-term'
+Bundle 'benmills/vimux'
+" Some shit with the vimuxpython utils is broken
+
+" dictionaries
 Bundle 'szw/vim-dict'
+
+" window resizing
+Bundle 'roman/golden-ratio'
+Bundle 'vim-scripts/zoomwintab.vim'
+
+" broken stuff
+" Bundle 'FredKSchott/CoVim'
 
 
 filetype plugin indent on     " required!
@@ -368,4 +395,3 @@ let g:showmarks_enable = 0
 
 " edit vimrc!
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-
