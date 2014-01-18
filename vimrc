@@ -364,6 +364,7 @@ Bundle 'mustache/vim-mode'
 Bundle 'tomtom/tlib_vim'
 Bundle 'rosenfeld/conque-term'
 Bundle 'benmills/vimux'
+Bundle 'jpalardy/vim-slime'
 " Some shit with the vimuxpython utils is broken
 
 " dictionaries
@@ -371,7 +372,9 @@ Bundle 'szw/vim-dict'
 
 " window resizing
 Bundle 'roman/golden-ratio'
-Bundle 'vim-scripts/zoomwintab.vim'
+" this need to replace the function definitions to 
+" overwrite them (add ! after the function keyword)
+Bundle 'vim-scripts/toggle_maximize.vim'
 
 " broken stuff
 " Bundle 'FredKSchott/CoVim'
@@ -386,8 +389,10 @@ nnoremap <silent> <F3> :Grep<CR>
 nnoremap <silent> <leader>TT :ConqueTermVSplit zsh<CR>
 
 " Vim-Dict configuration
+    "\["dict.org", ["gcide", "wn", "moby-thes", "vera",
+    "\              "jargon", "foldoc", "bouvier", "devil"]],
 let g:dict_hosts = [
-    \["dict.org", ["gcide", "wn", "moby-thes", "vera", "jargon", "foldoc", "bouvier", "devil"]]
+    \["127.0.0.1", ["jargon", "devil"]],
     \]
 
 " do not start showmarks (use \mt to toggle)
@@ -395,3 +400,6 @@ let g:showmarks_enable = 0
 
 " edit vimrc!
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+
+let g:slime_target = "tmux"
+let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
