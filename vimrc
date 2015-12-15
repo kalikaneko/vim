@@ -15,8 +15,8 @@
 " Only basic settings needed to enforce the style guidelines are set.
 " Some suggested options are listed but commented out at the end of this file.
 
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+" call pathogen#runtime_append_all_bundles()
+" call pathogen#helptags()
 
 set background=dark
 
@@ -140,7 +140,7 @@ set nocompatible " Disable vi-compatibility
 
 
 set laststatus=2 " Always show the statusline
-" set statusline = "%{fugitive#statusline()}"  " add branch to statusline
+set statusline = "%{fugitive#statusline()}"  " add branch to statusline
 
 set t_Co=256 " Explicitly tell vim that the terminal has 256 colors
 
@@ -150,15 +150,6 @@ set t_Co=256 " Explicitly tell vim that the terminal has 256 colors
 "colorscheme delek
 "colorscheme paintbox
 
-set background=dark
-let g:solarized_termtrans=1
-let g:solarized_termcolors=256 "w/o this, it appears a green color... 
-"but ... it's not so bad
-colorscheme solarized
-let g:Powerline_symbols = 'unicode'
-
-" !!!!
-" custom schemes creator: http://www.bilalquadri.com/villustrator/
 
 " filetype on            " enables filetype detection
 filetype off            " disables filetype detection
@@ -167,8 +158,6 @@ filetype plugin on     " enables filetype specific plugins
 
 " let g:pyflakes_use_quickfix = 0
 let g:pyflakes_use_quickfix = 0
-
-call togglebg#map("<F5>")
 
 " move between tabs
 nnoremap <C-H> :tabprevious<CR>
@@ -189,6 +178,7 @@ inoremap <C-W>m :set filetype=mail<CR>
 " SQUASH -- for rebase !
 map ,s dwis <ESC>
 map ,c :VimuxPromptCommand<CR>
+map ,e :g/^$/d<CR>
 
 
 "nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
@@ -222,8 +212,6 @@ iab itemdo * [ ]
 
 " tagbar toggle
 nmap <F9> :TagbarToggle<CR>
-
-" let g:Powerline_symbols = 'fancy'
 
 " Pymode
 " I think this is making vim a little slow lately...
@@ -264,33 +252,47 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h set textwidth=79
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h set wrap linebreak
 
 """ python/supertab
-au FileType python set omnifunc=pythoncomplete#Complete
-let g:SuperTabDefaultCompletionType = "context"
-set completeopt=menuone,longest,preview
+"au FileType python set omnifunc=pythoncomplete#Complete
+"let g:SuperTabDefaultCompletionType = "context"
+"set completeopt=menuone,longest,preview
 
 """ tags
 """ see http://www.held.org.il/blog/2011/02/configuring-ctags-for-python-and-vim/
 set tags=~/mytags
 
 """ jedi bindings
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = "<leader>d"
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#completions_command = "<C-p>"
+"let g:jedi#goto_assignments_command = "<leader>g"
+"let g:jedi#goto_definitions_command = "<leader>d"
+"let g:jedi#documentation_command = "K"
+"let g:jedi#usages_command = "<leader>n"
+"let g:jedi#completions_command = "<C-p>"
 
 """ leader-r is colliding wth something else
-let g:jedi#rename_command = "<leader>t"
-let g:jedi#show_call_signatures = "1"
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#popup_on_dot = 0
-autocmd FileType python setlocal completeopt-=preview
+"let g:jedi#rename_command = "<leader>t"
+"let g:jedi#show_call_signatures = "1"
+"let g:jedi#auto_vim_configuration = 0
+"let g:jedi#popup_on_dot = 0
+
+""" YCM: do not autotrigger
+let &omnifunc = &completefunc 
+let g:ycm_auto_trigger = 0
+let g:ycm_min_num_of_chars_for_completion = 3
+let g:ycm_cache_omnifunc = 0
+let g:ycm_key_invoke_completion = '<C-Y>'
+"let g:ycm_autoclose_preview_window_after_completion=1
+nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+let g:UltiSnipsExpandTrigger="<C-f>"
+
+"autocmd FileType python setlocal completeopt-=preview
 
 
 
 """ notmuch-vim
 """should filter by leap-list tag instead
 let g:notmuch_folders = [
+	\ [ 'ben@futeisha', 'to:ben@futeisha.org' ],
+	\ [ 'kali@futeisha', 'to:kali@futeisha.org' ],
 	\ [ 'pers', 'tag:pers' ],
 	\ [ 'friends', 'tag:friends' ],
 	\ [ 'new', 'tag:inbox and tag:unread' ],
@@ -303,6 +305,7 @@ let g:notmuch_folders = [
 	\ [ 'tor-dev', 'tag:lists and tag:tor-dev' ],
 	\ [ 'python-dev', 'tag:lists and tag:python-dev' ],
 	\ [ 'debian-devel', 'tag:lists and tag:debian-devel' ],
+	\ [ 'leap-git-UNREAD', 'tag:unread and (from:leap-code-o-matic or from:gitolite@hare)'],
 	\ [ 'leap-git', 'from:leap-code-o-matic or from:gitolite@hare' ],
 	\ ]
 
@@ -327,12 +330,19 @@ Bundle 'flazz/vim-colorschemes'
 
 " XXX uh --- I had a vbroken/old vim-powerline,
 " but it *was* working it it.
-Bundle 'Lokaltog/powerline'
+Bundle 'bling/vim-airline'
+" Bundle 'Lokaltog/powerline'
 Bundle 'vim-scripts/vimwiki'
-" I got a fork of snipmate because some problem with...
-" supertab?
+Bundle 'mhinz/vim-startify'
+
+Bundle 'valloric/YouCompleteMe'
+Bundle 'scrooloose/syntastic'
+Bundle 'SirVer/ultisnips'
+
+" snipmate seems not to be working... switch to UltiSnips...
+" I got a fork of snipmate because some problem with... supertab?
 Bundle 'garbas/vim-snipmate'
-Bundle 'ervandew/supertab'
+"Bundle 'ervandew/supertab'
 Bundle 'majutsushi/tagbar'
 Bundle 'sjl/gundo.vim'
 
@@ -340,32 +350,51 @@ Bundle 'sjl/gundo.vim'
 Bundle 'bridgeutopia/vim-showmarks'
 Bundle 'vim-scripts/grep.vim'
 Bundle 'tpope/vim-surround'
+Bundle 'rking/ag.vim' 
+Bundle 'jeffkreeftmeijer/vim-numbertoggle'
+Bundle 'vim-scripts/TaskList.vim'
+Bundle 'james9909/stackanswers.vim'
 
 " Git
 Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-fugitive'
 Bundle 'motemen/git-vim'
+Bundle 'kalikaneko/vim-github-links'
+
+" pullreqs
+Bundle 'junkblocker/patchreview-vim'
+Bundle 'codegram/vim-codereview'
 
 " python
-Bundle 'klen/python-mode'
-Bundle 'davidhalter/jedi-vim'
-Bundle 'kevinw/pyflakes-vim'
-Bundle 'jbking/vim-pep8'
+"Bundle 'klen/python-mode'
+"Bundle 'davidhalter/jedi-vim'
+"Bundle 'kevinw/pyflakes-vim'
+"Bundle 'jbking/vim-pep8'
 Bundle 'fs111/pydoc.vim'
 
 " syntax
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle "sudar/vim-arduino-syntax"
 Bundle 'plasticboy/vim-markdown'
 Bundle 'vim-scripts/SyntaxRange'
 Bundle 'mustache/vim-mode'
+Bundle 'Shirk/vim-gas'
 
 " Shells and stuff
 Bundle 'tomtom/tlib_vim'
 Bundle 'rosenfeld/conque-term'
 Bundle 'benmills/vimux'
-Bundle 'jpalardy/vim-slime'
 " Some shit with the vimuxpython utils is broken
+
+" Lispy stuff
+" Bundle 'jpalardy/vim-slime'
+Bundle 'kovisoft/slimv'
+Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'wlangstroth/vim-racket'
+
+" task handling
+Bundle 'farseer90718/vim-taskwarrior'
 
 " dictionaries
 Bundle 'szw/vim-dict'
@@ -375,10 +404,27 @@ Bundle 'roman/golden-ratio'
 " this need to replace the function definitions to 
 " overwrite them (add ! after the function keyword)
 Bundle 'vim-scripts/toggle_maximize.vim'
+Bundle 'kalikaneko/git-rebase-helper'
 
 " broken stuff
 " Bundle 'FredKSchott/CoVim'
 
+set background=dark
+let g:solarized_termtrans=1
+let g:solarized_termcolors=256 "w/o this, it appears a green color... 
+"but ... it's not so bad
+colorscheme solarized
+
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+
+
+call togglebg#map("<F5>")
+
+" !!!!
+" custom schemes creator: http://www.bilalquadri.com/villustrator/
+
+let g:NumberToggleTrigger="<F2>"
 
 filetype plugin indent on     " required!
 
@@ -388,11 +434,14 @@ nnoremap <silent> <F3> :Grep<CR>
 " Map Leader-T to ConqueTerm
 nnoremap <silent> <leader>TT :ConqueTermVSplit zsh<CR>
 
+nnoremap <silent> <F4> :echo GithubLink()<cr>
+
 " Vim-Dict configuration
     "\["dict.org", ["gcide", "wn", "moby-thes", "vera",
     "\              "jargon", "foldoc", "bouvier", "devil"]],
 let g:dict_hosts = [
-    \["127.0.0.1", ["jargon", "devil"]],
+    \["127.0.0.1", ["jargon", "devil", "vera", "moby-thesaurus",
+    \"fd-eng-spa"]],
     \]
 
 " do not start showmarks (use \mt to toggle)
@@ -403,3 +452,19 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
 let g:slime_target = "tmux"
 let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
+
+setlocal cursorline
+
+vmap <C-c> y: call system("xclip -i -selection clipboard", getreg("\""))<CR>
+map <Insert> :set paste<CR>i<CR><CR><Esc>k:.!xclip -o<CR>JxkJ:set nopaste<CR>
+
+
+"leapder-j/k inserts. nnoremap <silent><C-j> m`:silent +g/\m^\s*$/d<CR>``:noh<CR>
+nnoremap <silent><leader>j :set paste<CR>m`o<Esc>``:set nopaste<CR>
+nnoremap <silent><leader>k :set paste<CR>m`O<Esc>``:set nopaste<CR>
+
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+
+let g:syntastic_python_checkers = ['flake8', 'twistedchecker']
+set clipboard=unnamedplus
