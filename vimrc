@@ -311,103 +311,107 @@ let g:notmuch_folders = [
 
 
 " vundles!
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
 
  " let Vundle manage Vundle
  " required! 
-Bundle 'gmarik/vundle'
+" Bundle 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 
  " My Bundles here: 
 
 " git repos
 
 " looking good
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'flazz/vim-colorschemes'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'flazz/vim-colorschemes'
 
 " essentials
 
-" XXX uh --- I had a vbroken/old vim-powerline,
-" but it *was* working it it.
-Bundle 'bling/vim-airline'
-" Bundle 'Lokaltog/powerline'
-Bundle 'vim-scripts/vimwiki'
-Bundle 'mhinz/vim-startify'
 
-Bundle 'valloric/YouCompleteMe'
-Bundle 'scrooloose/syntastic'
-Bundle 'SirVer/ultisnips'
+Plugin 'bling/vim-airline'
+Plugin 'vim-scripts/vimwiki'
+Plugin 'mhinz/vim-startify'
+
+Plugin 'valloric/YouCompleteMe'
+Plugin 'scrooloose/syntastic'
+Plugin 'SirVer/ultisnips'
 
 " snipmate seems not to be working... switch to UltiSnips...
 " I got a fork of snipmate because some problem with... supertab?
-Bundle 'garbas/vim-snipmate'
-"Bundle 'ervandew/supertab'
-Bundle 'majutsushi/tagbar'
-Bundle 'sjl/gundo.vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'majutsushi/tagbar'
+Plugin 'sjl/gundo.vim'
 
 " random stuff
-Bundle 'bridgeutopia/vim-showmarks'
-Bundle 'vim-scripts/grep.vim'
-Bundle 'tpope/vim-surround'
-Bundle 'rking/ag.vim' 
-Bundle 'jeffkreeftmeijer/vim-numbertoggle'
-Bundle 'vim-scripts/TaskList.vim'
-Bundle 'james9909/stackanswers.vim'
+Plugin 'bridgeutopia/vim-showmarks'
+Plugin 'vim-scripts/grep.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'rking/ag.vim' 
+Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+Plugin 'vim-scripts/TaskList.vim'
+Plugin 'james9909/stackanswers.vim'
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/neoyank.vim'
+
+
+" task handling
+Plugin 'farseer90718/vim-taskwarrior'
 
 " Git
-Bundle 'airblade/vim-gitgutter'
-Bundle 'tpope/vim-fugitive'
-Bundle 'motemen/git-vim'
-Bundle 'kalikaneko/vim-github-links'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+Plugin 'motemen/git-vim'
+Plugin 'kalikaneko/vim-github-links'
 
 " pullreqs
-Bundle 'junkblocker/patchreview-vim'
-Bundle 'codegram/vim-codereview'
+Plugin 'junkblocker/patchreview-vim'
+Plugin 'codegram/vim-codereview'
 
 " python
-"Bundle 'klen/python-mode'
-"Bundle 'davidhalter/jedi-vim'
-"Bundle 'kevinw/pyflakes-vim'
-"Bundle 'jbking/vim-pep8'
-Bundle 'fs111/pydoc.vim'
+"Plugin 'klen/python-mode'
+"Plugin 'davidhalter/jedi-vim'
+"Plugin 'kevinw/pyflakes-vim'
+"Plugin 'jbking/vim-pep8'
+Plugin 'fs111/pydoc.vim'
 
 " syntax
-Bundle 'jelera/vim-javascript-syntax'
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle "sudar/vim-arduino-syntax"
-Bundle 'plasticboy/vim-markdown'
-Bundle 'vim-scripts/SyntaxRange'
-Bundle 'mustache/vim-mode'
-Bundle 'Shirk/vim-gas'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'sudar/vim-arduino-syntax'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'vim-scripts/SyntaxRange'
+Plugin 'mustache/vim-mode'
+Plugin 'Shirk/vim-gas'
 
 " Shells and stuff
-Bundle 'tomtom/tlib_vim'
-Bundle 'rosenfeld/conque-term'
-Bundle 'benmills/vimux'
+Plugin 'tomtom/tlib_vim'
+Plugin 'rosenfeld/conque-term'
+Plugin 'benmills/vimux'
 " Some shit with the vimuxpython utils is broken
 
 " Lispy stuff
-" Bundle 'jpalardy/vim-slime'
-Bundle 'kovisoft/slimv'
-Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'wlangstroth/vim-racket'
-
-" task handling
-Bundle 'farseer90718/vim-taskwarrior'
+" Plugin 'jpalardy/vim-slime'
+Plugin 'kovisoft/slimv'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'wlangstroth/vim-racket'
 
 " dictionaries
-Bundle 'szw/vim-dict'
+Plugin 'szw/vim-dict'
 
 " window resizing
-Bundle 'roman/golden-ratio'
+Plugin 'roman/golden-ratio'
 " this need to replace the function definitions to 
 " overwrite them (add ! after the function keyword)
-Bundle 'vim-scripts/toggle_maximize.vim'
-Bundle 'kalikaneko/git-rebase-helper'
+Plugin 'vim-scripts/toggle_maximize.vim'
+Plugin 'kalikaneko/git-rebase-helper'
 
 " broken stuff
-" Bundle 'FredKSchott/CoVim'
+" Plugin 'FredKSchott/CoVim'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 set background=dark
 let g:solarized_termtrans=1
@@ -419,15 +423,23 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
 
-call togglebg#map("<F5>")
+
+" Unite
+let g:unite_source_history_yank_enable = 1
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+
+nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
+
 
 " !!!!
 " custom schemes creator: http://www.bilalquadri.com/villustrator/
+" Map F2 TO SCHEME CHANGER
 
 let g:NumberToggleTrigger="<F2>"
 
-filetype plugin indent on     " required!
 
+" Map F5 to Toggle Background
+call togglebg#map("<F5>")
 
 " Map F3 to Grep
 nnoremap <silent> <F3> :Grep<CR>
