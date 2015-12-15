@@ -355,6 +355,7 @@ Plugin 'james9909/stackanswers.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/neoyank.vim'
 Plugin 'Shougo/vimproc.vim'
+Plugin 'osyo-manga/unite-airline_themes'
 
 
 " task handling
@@ -420,12 +421,13 @@ let g:solarized_termcolors=256 "w/o this, it appears a green color...
 "but ... it's not so bad
 colorscheme solarized
 
+" Airline customizations
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-
-
+let g:airline_theme = 'dark'
 
 " Unite
+let g:unite_prompt = '»'
 let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
