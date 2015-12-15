@@ -354,6 +354,7 @@ Plugin 'vim-scripts/TaskList.vim'
 Plugin 'james9909/stackanswers.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/neoyank.vim'
+Plugin 'Shougo/vimproc.vim'
 
 
 " task handling
@@ -427,8 +428,47 @@ let g:airline#extensions#tabline#enabled = 1
 " Unite
 let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+call unite#custom#profile('default', 'context', {
+              \ 'start_insert': 1
+              \ }) 
 
 nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
+nnoremap <C-p> :Unite file_rec/async<cr>
+nnoremap <space>/ :Unite grep:.<cr>
+
+let g:unite_source_grep_max_candidates = 200
+
+if executable('hw')
+  " Use hw (highway)
+  " https://github.com/tkengo/highway
+  let g:unite_source_grep_command = 'hw'
+  let g:unite_source_grep_default_opts = '--no-group --no-color'
+  let g:unite_source_grep_recursive_opt = ''
+elseif executable('ag')
+  " Use ag (the silver searcher)
+  " https://github.com/ggreer/the_silver_searcher
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts =
+  \ '-i --vimgrep --hidden --ignore ' .
+  \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+  let g:unite_source_grep_recursive_opt = ''
+elseif executable('pt')
+  " Use pt (the platinum searcher)
+  " https://github.com/monochromegane/the_platinum_searcher
+  let g:unite_source_grep_command = 'pt'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor'
+  let g:unite_source_grep_recursive_opt = ''
+elseif executable('ack-grep')
+  " Use ack
+  " http://beyondgrep.com/
+  let g:unite_source_grep_command = 'ack-grep'
+  let g:unite_source_grep_default_opts =
+  \ '-i --no-heading --no-color -k -H'
+  let g:unite_source_grep_recursive_opt = ''
+endif
+
+
 
 
 " !!!!
@@ -443,10 +483,11 @@ call togglebg#map("<F5>")
 
 " Map F3 to Grep
 nnoremap <silent> <F3> :Grep<CR>
+nnoremap <silent> <F4> :echo GithubLink()<cr>
+
 " Map Leader-T to ConqueTerm
 nnoremap <silent> <leader>TT :ConqueTermVSplit zsh<CR>
 
-nnoremap <silent> <F4> :echo GithubLink()<cr>
 
 " Vim-Dict configuration
     "\["dict.org", ["gcide", "wn", "moby-thes", "vera",
